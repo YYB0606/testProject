@@ -32,6 +32,7 @@ public class Controller {
 			case View.BOARD_INSERT: view = boardService.insert(); break;
 			case View.BOARD_DETAIL: view = boardService.detail(); break;
 			case View.BOARD_UPDATE: view = boardService.update(); break;
+			case View.BOARD_DELETE: view = boardService.delete(); break;
 			default: view = home(); break;
 			}
 		}

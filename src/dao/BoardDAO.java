@@ -29,9 +29,15 @@ public class BoardDAO {
 		String sql = "SELECT * FROM JAVA_BOARD WHERE NUM=? ";
 		return jdbc.selectOne(sql,param);
 	}
-//	public Map<String, Object> update(List<Object> param) {
-//		String sql = "UPDATE (TITLE,WRITER,CONTENT)"
-//				+ "SET (?,?,?) ";
-//		return jdbc.update(sql,param);
-//	}
+	
+	public Map<String, Object> update(List<Object> param) {
+		String sql = "UPDATE (TITLE,WRITER,CONTENT)"
+				+ "SET (?,?,?) ";
+		return jdbc.update(sql,param);
+	}
+	
+	public int delete(List<Object> param) {
+		String sql = "DELETE FROM JAVA_BOARD WHERE NUM=?";
+		return jdbc.update(sql,param);
+	}
 }

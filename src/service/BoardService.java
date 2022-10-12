@@ -95,6 +95,7 @@ public class BoardService {
 			System.out.println("없는 번호 입니다.");
 			return View.BOARD_LIST;
 		}
+		
 		System.out.println("-- 게시물 정보 --");
 		System.out.println("제목 : " + boardInfo.get("TITLE"));
 		System.out.println("작성자 : " + boardInfo.get("WRITER"));
@@ -105,7 +106,50 @@ public class BoardService {
 	}
 	
 	public int update() {
-
+		System.out.println("수정할 게시글 번호 입력 >> ");
+		int num = ScanUtil.nextInt();
+		System.out.println("수정할 부분 1.제목 2.내용");
+		String str = "";
+		switch(ScanUtil.nextInt()) {
+		case 1: str = "TITLE"; break;
+		case 2: str = "CONTENT"; break;
+		default: System.out.println("잘못 입력");
+		}
+		System.out.println("수정할 내용 입력 >>");
+		
+		
+		List<Object> param = new ArrayList<>();
+		param.add(num);
+		
+		Map<String, Object> boardInfo = (Map<String, Object>) boardDAO.getInfo(param);
+		if(boardInfo == null) {
+			System.out.println("없는 번호 입니다.");
+			return View.BOARD_LIST;
+		}
+		
+		
+		return View.BOARD_LIST;
+	}
+	
+	public int delete() {
+		System.out.println("게시글 번호 입력 >> ");
+		int num = ScanUtil.nextInt();
+		List<Object> param = new ArrayList<>();
+		param.add(num);
+		
+		Map<String, Object> boardInfo = (Map<String, Object>) boardDAO.getInfo(param);
+		if(boardInfo == null) {
+			System.out.println("없는 번호 입니다.");
+			return View.BOARD_LIST;
+		}
+		
+		int result = boardDAO.delete(param);
+		if(result > 0) {
+			System.out.println("삭제 성공!");
+		}else{
+			System.out.println("삭제 실패!");
+		}
+		
 		return View.BOARD_LIST;
 	}
 }
